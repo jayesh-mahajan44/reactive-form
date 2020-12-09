@@ -1,0 +1,29 @@
+<div class=" bg-warning mx-auto d-flex flex-column col-sm-5 my-5 col-lg-4 col-11">
+<form  [formGroup] = 'form' >
+    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Dist</label>
+    <select class="custom-select my-1 mr-sm-2 " formControlName = 'Dist'  (change) =  'selectDist($event)' >
+      <option value="null"  selected >Choose...</option> 
+      <option *ngFor = 'let item of data; let i = index' [value]="item.Dist"  >{{item.Dist}}</option>
+
+    </select>
+
+    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">State</label>
+    <select class="custom-select my-1 mr-sm-2 "  formControlName = 'State' (change) = 'selectState($event)'  >
+      <option value="null" selected >Choose...</option>
+      <option *ngFor = 'let item of data; let i = index' [value]="item.State"  >{{item.State}}</option>
+    </select>
+
+    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Country</label>
+    <select class="custom-select my-1 mr-sm-2 "  formControlName = 'Country'  (change) =  'selectCountry($event)'  >
+      <option value="null"  selected >Choose...</option>
+      <option *ngFor = 'let item of data; let i = index' value="item.country" [value]="item.country"  >{{item.country}}</option>
+
+    </select>
+    <div class="row justify-content-center">
+
+        <button  class="btn btn-secondary my-2 px-4 " style="width: fit-content;" (click) = 'submit()' >Submit</button>
+    </div>
+  </form>
+ 
+</div>
+

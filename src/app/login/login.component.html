@@ -1,0 +1,68 @@
+<div
+  class="container col-lg-4 col-md-5 col-sm-6 col-10 shadow mx-auto p-3 m-5 bg-light rounded"
+>
+  <h2>Login</h2>
+  <h5>
+    Note : <span style="font-size: 15px">username & password = Jayesh</span>
+  </h5>
+
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="username" class="font_size"
+        ><i class="fa fa-user" aria-hidden="true"></i> Username</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="text"
+        formControlName="username"
+        placeholder="Enter username"
+        name="email"
+      />
+    </div>
+    <div
+      *ngIf="form.get('username').touched && form.get('username').errors"
+      class="pb-3 pl-3"
+    >
+      <div *ngIf="form.get('username').errors.required" style="color: red">
+        Username Name is Mandatory
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pwd" class="font_size">
+        <i class="fa fa-key" aria-hidden="true"></i> Password</label
+      >
+      <input
+        type="password"
+        class="form-control"
+        id="pwd"
+        formControlName="password"
+        placeholder="Enter password"
+        name="pswd"
+      />
+    </div>
+    <div
+      *ngIf="form.get('password').touched && form.get('password').errors"
+      class="pb-3 pl-3"
+    >
+      <div *ngIf="form.get('password').errors.required" style="color: red">
+        Password Name is Mandatory
+      </div>
+    </div>
+    <button (click)="signIn()" type="submit" class="btn btn-primary mr-3">
+      Sign in
+    </button>
+  </form>
+</div>
+<div>
+  <ul class="bg-info w-50">
+    <li *ngFor = 'let item of data?.data'>{{item.id}}</li>
+    </ul>
+    <img
+      [src]="'data:image/jpeg;base64,' + image"
+      style="height: 100px; width: 100px"
+      srcset=""
+    />
+</div>
+

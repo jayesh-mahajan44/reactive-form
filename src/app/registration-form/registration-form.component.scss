@@ -1,0 +1,31 @@
+header{
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: rgba(248,248,248,.9);
+    font-size: 25px;
+    font-weight: 400;
+    color: #1d1d1d;
+}
+.form{
+ 
+    background: rgba(255,255,255,.9);
+}
+
+.icon-pos{
+    top: 8px;
+    right: 12px;
+    border-left: solid 2px #d7c8c8;
+    font-size: 25px;
+    padding-left: 5px;
+    border-left-width: 1px;
+    border-left-style: solid;
+    color: gray;
+}
+
+input.ng-touched.ng-invalid , select.ng-touched.ng-invalid{
+    border: 1px solid red;
+    margin-bottom: 0;
+}
+
+btn.disabled{
+    background-color: rosybrown;
+}

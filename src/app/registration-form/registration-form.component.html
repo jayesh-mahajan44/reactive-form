@@ -1,0 +1,173 @@
+
+
+<div class="container-fluid h-100">
+  <div class="row justify-content-center align-content-center my-5">
+    <div class="col-6 p-0" >
+      <header class="py-4 px-4">Registration form
+</header>
+      
+      <div class="form">
+
+      
+
+        <form class="p-4" [formGroup]='employeeForm' >
+          <div class="col-12 py-3 px-0">
+            <div class="form-group position-relative ">
+              <!-- <label for="EmployeeName">Name:</label> -->
+              <input
+                type="text"
+                class="form-control px-3"
+                placeholder="Username"
+                formControlName= 'userName'
+              />
+              <i
+                class="fa fa-user-circle position-absolute icon-pos"
+                aria-hidden="true"
+              ></i>
+            </div>
+           
+            <div *ngIf=" employeeForm.get('userName').touched && employeeForm.get('userName').errors"  class="pb-3 pl-3">
+                <div *ngIf="employeeForm.get('userName').errors.required" style="color: red;">Username Name is Mandatory</div>
+                <div *ngIf="employeeForm.get('userName').errors?.pattern" style="color: red;">Username Name should be character</div>
+            </div>
+
+
+            <!-- <div *ngIf="f.userName.touched && f.userName.errors" class="invalid-feedback">
+                <div *ngIf="f.userName.errors.required">Username Name is required</div>
+            </div>
+        -->
+
+            <div class="form-group position-relative">
+              <!-- <label for="EmployeeEmailID">Email ID:</label> -->
+              <input
+                type="email"
+                class="form-control px-3"
+                placeholder="Email address"
+                formControlName= 'emailAddress'
+              />
+
+              <i
+                class="fa fa-envelope position-absolute icon-pos"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <div *ngIf="employeeForm.get('emailAddress').touched && employeeForm.get('emailAddress').errors"  class="pb-3 pl-3" >
+                <div *ngIf="employeeForm.get('emailAddress').errors?.required" style="color: red;">Email is required</div>
+                <div *ngIf="employeeForm.get('emailAddress').errors?.pattern" style="color: red;">Email must be a valid email address</div>
+            </div>
+
+            <div class="form-group position-relative">
+              <!-- <label for="EmployeeNumber">Mobile No:</label> -->
+              <input
+                type="text"
+                class="form-control px-3"
+                placeholder="Mobile number"
+                formControlName= 'mobileNumber'
+              />
+              <i
+                class="fa fa-mobile fa-5x position-absolute icon-pos" style="width: 1em;"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+         <div *ngIf=" employeeForm.get('mobileNumber').touched && employeeForm.get('mobileNumber').errors"  class="pb-3 pl-3">
+                <div *ngIf="employeeForm.get('mobileNumber').errors.required" style="color: red;">Mobile number is Mandatory</div>
+                <div *ngIf="employeeForm.get('mobileNumber').errors?.pattern" style="color: red;">Mobile number should be 10 digit and only allow number</div>
+            </div>
+
+            <div class="form-group">
+
+              <select class="form-control"  formControlName= 'gender'>
+                <!-- <option value="" >Choose a Country</option> -->
+                <option value="null" selected="" disabled="">Gender</option>
+                <option *ngFor="let selectItem of EmployeeGender"  value="{{selectItem}}" >
+                  {{ selectItem }}
+                </option>
+              </select>
+            </div>
+
+            <div *ngIf=" employeeForm.get('gender').touched && employeeForm.get('gender').errors"  class="pb-3 pl-3">
+                <div *ngIf="employeeForm.get('gender').errors.required" style="color: red;">Please select gender</div>
+            </div>
+           
+           
+
+            <div class="form-group">
+              <label for="inputCity">Current Location :</label>
+
+              <input type="text" class="form-control" id="inputCity" formControlName= 'currentLocation' />
+            </div>
+
+ 
+            <div *ngIf=" employeeForm.get('currentLocation').touched && employeeForm.get('currentLocation').errors"  class="pb-3 pl-3">
+                <div *ngIf="employeeForm.get('currentLocation').errors.required" style="color: red;">Current location is mandetory</div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="inputState">Country :</label>
+              <select id="inputState" class="form-control" formControlName= 'country' >
+                <option value="null" selected="" disabled="">select Country</option>
+                <option *ngFor="let Country of Countries "  value='{{Country}}'>
+                  {{ Country }}
+                </option>
+              </select>
+            </div>
+
+            <div *ngIf=" employeeForm.get('country').touched && employeeForm.get('country').errors"  class="pb-3 pl-3">
+                <div *ngIf="employeeForm.get('country').errors.required" style="color: red;">Please select country</div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputState">Total Experience :</label>
+              <select id="inputState" class="form-control" (change) = 'selectExp($event)' formControlName= 'experience'>
+                <option value="" selected="" disabled="">select Experience</option> 
+                <option *ngFor="let exp of employeeExp"  value= '{{exp}}'>
+                  {{ exp }}
+                </option>
+              </select>
+            </div>
+
+            <div *ngIf=" employeeForm.get('experience').touched && employeeForm.get('experience').errors"  class="pb-3 pl-3">
+                <div *ngIf="employeeForm.get('experience').errors.required" style="color: red;">Please select experience</div>
+            </div>
+
+            <div class="form-group">
+              <label for="EmployeeSkill">Skills :</label>
+        
+              <div class="d-flex flex-column" *ngFor = ' let item  of employeeForm.get("skills").value;let i=index' >
+              <div class="form-check form-check-inline">
+                <input item
+                  class="form-check-input"
+                  type="checkbox"
+                  [checked] = 'item.checked'
+                   (change)="selectSkills(item,$event.target.checked,i)"
+                  value="{{item.name}}"
+                  id="item.checked"
+                />
+                <label class="form-check-label col-4" for = 'item.name'
+                  >{{item.name}}</label>
+              </div>
+              
+            </div>
+            </div>
+            <!-- <div *ngIf="!selectedSkills.length "  style="color: red;"> Select at least one skill</div> -->
+           
+            <hr />
+            <div class="text-center">
+              <button *ngIf = 'this.router.url.includes("employeeForm")' [disabled]="!employeeForm.valid"   type="button"class="btn bg-success px-4"  (click) ='onSubmit()' >Submit</button>
+
+              <button  *ngIf = 'this.router.url.includes("edit")' type="button"class="btn bg-success px-4" [disabled]="!employeeForm.valid"  (click) ='Update()' >Update</button>
+            </div>
+            
+          </div>
+        </form>
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+ 
+

@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div style="height: 60px" class="bg-dark row align-content-center px-4 justify-content-end">
+    <div class="btn-group">
+      <button
+        *ngIf="!this.router.url.includes('viewForm')"
+        type="button"
+        class="btn btn-success px-4"
+        (click)="List()"
+      >
+        Employee List
+      </button>
+
+      <button
+        *ngIf="!this.router.url.includes('login')"
+        class="btn btn-danger mx-2 px-3"
+        (click)="logOut()"
+      >
+        Logout
+      </button>
+      <button  *ngIf="!this.router.url.includes('login')" (click)="navigate()"  class="btn btn-warning mx-2 px-3" >
+        Dropdown Task
+      </button>
+    </div>
+  </div>
+</div>
